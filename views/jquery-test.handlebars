@@ -1,0 +1,14 @@
+{{#section 'head'}}
+    <meta name="robots" content="noindex">
+{{/section}}
+
+<h1>Test page</h1>
+<p>test jQuery</p>
+
+{{#section 'jquery'}}
+    <script>
+        $('documant').ready(function(){
+            $('h1').html('jQuery Works');
+        });
+    </script>
+{{/section}}
