@@ -1,109 +1,106 @@
 /**
  * Created by yuqili on 2015/7/6.
  */
-//var test = require('./findone.js');
-//var format = require('util');
+var find = require('./findone.js');
+var test = require('./test.js');
+//
+var result = test.findOne;
+var callback = test.callback;
+//
+//console.log(result);
 
-//console.log('--'+ test.findOne);
+var MongoClient = require('mongodb').MongoClient;
 
+//function findOne(temp_doc) {
+//module.exports = function findOne(temp_doc) {
+    var temp_doc;
+//    MongoClient.connect('mongodb://localhost:27017/test', function (err, db) {
+//        //if(err) throw err;
+//        // Create a collection we want to drop later
+        db.collection('phone').findOne({_id: '12341'}, function (err, doc) {
+            //test.equal(null, err);
+            //test.equal(null, item);
+            //callback = doc._id;
+            //console.log(doc);
+            temp_doc = doc._id;
+            db.close();
+            //console.log(_callback);
+
+        });
+//
+//    });
+//    return temp_doc;
+//};
+
+//var _callback = find._callback;
+//console.log(_callback);
+console.log(callback);
+
+
+//console.log(getDoc());
 
 var assert     = require('assert');
-//var DbProvider = require('../db').DbProvider;
-//var dbProvider = new DbProvider('localhost', 27017, 'test');
-//
-//describe('DbProvider', function(){
-//    describe('findAllNotes', function(){
-//        it('should return some notes', function(done){
-//            dbProvider.connect(function(){
-//                dbProvider.findAllNotes({}, function (err, result){
-//                    assert(result.length > 0);
-//                    done();
-//                });
-//            });
-//        })
-//    })
-//});
 
-
-
-
-'use strict';
-// Really just testing testing, more to come...
-describe('DbProvider', function(){
-    var util       = require('util');
-    var async      = require('async');
-    var assert     = require('assert');
-    var DbProvider = require('../db').DbProvider;
-    var dbProvider = new DbProvider('localhost/test', 27017, 'phone');
-    var fixtures   = [
-        {
-            "_id" : "12341",
-            "IMEI_VALUE" : "12341",
-            "PT_OID" : "P1",
-            "DMS_ID" : "1A",
-            "VENDOR" : "A",
-            "MODEL" : "AAA"
-        }
-    ];
-    console.log("Array:" + Array.isArray(fixtures));
-    before(function(done){ // Connect to the test-database
-        dbProvider.connect(function(){
-            console.log('1');
-            done();
-        });
-    });
-    before(function(done){ // Make the note-collection empty
-        dbProvider.deleteNote({},function(){
-            console.log('1.4');
-            done();
-        });
-        /*
-         var end = Date.now() + 1000;
-         while (Date.now() < end) ;
-         console.log('1.5');
-         */
-    });
-    before(function(done){
-        console.log('1.6.1:' + util.inspect(fixtures[0]));
-        dbProvider.saveNote(fixtures[0],function(){
-            done();
-        });
-    });
-    before(function(done){
-        console.log('1.6.1:' + util.inspect(fixtures[1]));
-        dbProvider.saveNote(fixtures[1],function(){
-            done();
-        });
-    });
-    /*
-     for(var i in fixtures) {  // Insert data sample
-     console.log('1.6:' + i + ':' + util.inspect(fixtures[i]));
-     before(function(done){
-     console.log('1.6.5:' + i + ':' + util.inspect(fixtures[i]));
-     dbProvider.saveNote(fixtures[i],function(){
-     done();
-     });
-     });
-     }
-     */
-    describe('findAllNotes', function(){
-        it('should return some 0 notes', function(done){
-            console.log('2');
-            dbProvider.findAllNotes({}, function (err, result){
-                console.log('3');
-                assert.equal(result.length,2);
-                done();
-            });
-        });
-    });
-    describe('saveNote', function(){
-        it('should insert a note without error', function(done){
-            console.log('4');
-            dbProvider.saveNote({}, function (err, result){
-                console.log('5');
-                assert.equal(err,null);
-                done();
-            });
-        });
+describe('Find one', function() {
+    it('with a failing test', function() {
+        //assert(false, 'Welcome');
+        assert.deepEqual(callback, ['12341']);
+        //expect(doc).to.be('12341');
     });
 });
+
+
+//
+//var assert = require('assert');
+//
+//function validator() {
+//    return ['error.nonpositive'];
+//}
+//
+//describe('col.insert', function() {
+//    it('insert a new document', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});
+//
+//describe('col.find', function() {
+//    it('find document', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});
+//
+//describe('col.findOne', function() {
+//    it('find a document', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});
+//
+//describe('col.update', function() {
+//    it('update a document', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});
+//
+//describe('col.upsert', function() {
+//    it('update or insert a new document', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});
+//
+//describe('col.remove', function() {
+//    it('remove a document', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});
+//
+//describe('col.aggregate', function() {
+//    it('sum', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});
+//
+//describe('col.mapReduce', function() {
+//    it('failing test', function() {
+//        //assert(false, 'Welcome');
+//    });
+//});

@@ -4,7 +4,7 @@
   "description": "web prac",
   "main": "meadowlark.js",
   "scripts": {
-    "test": "mocha -u bdd -R spec -t 500 --recursive"
+    "test": "mocha tests/node-test.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,13 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "expect.js": "^0.3.1",
     "mocha": "^2.2.5",
-    "validator": "^3.40.1"
+    "mocha-mongo": "^0.2.0",
+    "node.populator-mongodb": "0.0.2",
+    "should": "^7.0.1",
+    "util.js": "0.0.0",
+    "validator": "^3.40.1",
+    "zombie": "^4.0.13"
   }
 }

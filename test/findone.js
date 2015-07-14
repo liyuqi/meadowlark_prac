@@ -1,35 +1,47 @@
 //var mongoose = require('mongoose');
-
-
 var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-//var format = require('util').format;
+//var db =
 
-//module.exports = function findOne() {
-//    MongoClient.connect('mongodb://localhost:27017/test', function (err, db){
-//        //if(err) throw err;
-//        // Create a collection we want to drop later
-//        db.collection('phone').find({_id:'12341'},{limit:1}, function (err, docs) {
-//        //test.equal(null, err);
-//        //test.equal(null, item);
-//            docs.toArray(callback);
-//            console.log(docs);
-//            db.close();
-//
-//        //console.log(doc._id);
-//        });
-//    });
-//};
+var Db = require('mongodb').Db;
+var Connection = require('mongodb').Connection;
+var server = require('mongodb').Server;
 
+var db = new Db('test',new Server('localhost',27017),{});
 
-var DbProvider = function(host, port, database) {
-    this.dbUrl = "mongodb://"+host+":"+port+"/"+database;
-};
+var util = require('util');
+    function findOne(temp_doc) {
+    //var temp_doc;
+    MongoClient.connect('mongodb://localhost:27017/test', function (err, db) {
+        db.collection('phone').findOne({_id: '12341'}, function (err, doc) {
+            //test.equal(null, err);
+            //test.equal(null, item);
+            _callback = doc._id;
+            temp_doc = doc._id;
+            db.close();
+        });
 
-DbProvider.prototype.connect = function(callback) {
-    var self = this;
-    MongoClient.connect(this.dbUrl, function(err, db) {
-        self.db = db;
-        callback();
     });
+    return temp_doc;
 };
+//
+//module.exports = fineOne;
+//exports.callback = _callback;
+
+var findCallback = function() {
+    return findOne();
+};
+
+function validator() {
+    return '123';
+}
+
+
+//console.log(validator());
+//console.log(findOne());
+//console.log(temp());
+//console.log(_callback);
+
+exports.doc = validator();
+exports.result = findOne();
+exports.callback = findCallback();
+
